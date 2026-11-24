@@ -1,0 +1,10 @@
+Gili.exe
+Manaure-Setup.exe
+payload.zip
+release/
+*.pdb
+__pycache__/
+*.sqlite3
+settings.ini
+*.log
+*-test.txt
