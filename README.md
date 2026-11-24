@@ -1,6 +1,6 @@
 # MANAURE — Isla dinámica para Windows
 
-Edición comunitaria gratuita y de código abierto basada en [GILI](https://github.com/maulanarizky16/gili), de Maulana. Se conserva la licencia MIT original.
+MANAURE transforma la interacción con Windows en una experiencia dinámica, inteligente y personalizada. Una isla dinámica de código abierto y uso gratuito que integra inteligencia artificial local opcional, mascotas animadas, herramientas de productividad y controles multimedia. Disponible bajo licencia MIT.
 
 ## Instalación
 
