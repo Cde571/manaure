@@ -103,12 +103,11 @@ namespace Gili
             }
         }
 
-        /// <summary>The hint line quietly shows what is going on: timer, music or an upcoming prayer.</summary>
+        /// <summary>The hint line quietly shows what is going on: timer or music.</summary>
         Color HintColor()
         {
             if (pomo.Running) return PomoColor(pomo.Mode);
             if (mediaInfo.Playing) return mediaInfo.Accent;
-            if (PrayerSoon()) return Theme.Prayer;
             return Theme.Hint;
         }
 

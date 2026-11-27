@@ -193,36 +193,6 @@ namespace Gili
         }
     }
 
-    static class Hijri
-    {
-        static readonly string[] Months = { "Muharram", "Safar", "Rabiulawal", "Rabiulakhir", "Jumadilawal", "Jumadilakhir",
-                                            "Rajab", "Syakban", "Ramadan", "Syawal", "Zulkaidah", "Zulhijah" };
-        static readonly UmAlQuraCalendar Calendar = new UmAlQuraCalendar();
-
-        /// <summary>Hijri date; <paramref name="adjust"/> shifts by whole days to follow the Kemenag (isbat) decision.</summary>
-        public static void Of(DateTime date, int adjust, out int day, out int month, out int year)
-        {
-            var d = date.Date.AddDays(adjust);
-            day = Calendar.GetDayOfMonth(d);
-            month = Calendar.GetMonth(d);
-            year = Calendar.GetYear(d);
-        }
-
-        public static string Format(DateTime date, int adjust)
-        {
-            int d, m, y;
-            Of(date, adjust, out d, out m, out y);
-            return d + " " + Months[m - 1] + " " + y + " H";
-        }
-
-        public static bool IsRamadan(DateTime date, int adjust, out int day)
-        {
-            int m, y;
-            Of(date, adjust, out day, out m, out y);
-            return m == 9;
-        }
-    }
-
     static class WeatherArt
     {
         static readonly Color SunColor = Color.FromArgb(255, 255, 196, 61);

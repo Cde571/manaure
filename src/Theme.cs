@@ -16,7 +16,7 @@ namespace Gili
         public static bool IsLight, IsGlass;
 
         public static readonly string[] Names = { "hitam", "adaptif", "terang", "aksen", "ramadan", "kaca" };
-        public static readonly string[] Labels = { "Oscuro", "Adaptativo", "Claro", "Acento de Windows", "Ramadán", "Cristal líquido" };
+        public static readonly string[] Labels = { "Oscuro", "Adaptativo", "Claro", "Acento de Windows", "Dorado", "Cristal líquido" };
 
         static Theme() { Apply("hitam"); }
 
@@ -128,7 +128,7 @@ namespace Gili
         // Segoe Fluent Icons (Windows 11) / Segoe MDL2 Assets (Windows 10) share these code points.
         public const char IconVol0 = '', IconVol1 = '', IconVol2 = '', IconVol3 = '', IconMute = '';
         public const char IconBolt = '', IconMic = '', IconCam = '', IconMusic = '';
-        public const char IconMoon = '', IconSun = '', IconTimer = '', IconReset = '', IconPin = '';
+        public const char IconMoon = '', IconSun = '', IconTimer = '', IconClock = '\uE917', IconReset = '', IconPin = '';
         public const char IconBell = '', IconBellOff = '', IconChat = '';
 
         static string ui = "Segoe UI", semi = "Segoe UI Semibold", icons;
