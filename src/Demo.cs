@@ -113,11 +113,8 @@ namespace Gili
                 }),
                 Step(4200, delegate
                 {
-                    int i; DateTime when;
-                    if (prayers != null) prayers.Next(DateTime.Now, out i, out when);
-                    else { i = PrayerCalc.Maghrib; when = DateTime.Now; }
-                    var t = ShowToast(View.Adzan, 4.0, 3, true);
-                    if (t != null) { t.Title = PrayerCalc.Names[i]; t.Detail = Hm(when); }
+                    var t = ShowToast(View.PrayerAlarm, 4.0, 3, true);
+                    if (t != null) { t.Title = "Dale gracias a Jesús"; t.Detail = "3:00 p. m."; }
                     Pulse(Theme.Prayer, 3.5);
                 }),
                 Step(10, delegate

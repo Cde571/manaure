@@ -4,20 +4,15 @@ using System.Threading;
 
 namespace Gili
 {
-    /// <summary>Weather (BMKG), Hijri date and Ramadan touches on the island.</summary>
+    /// <summary>Weather (BMKG) and rain alerts on the island.</summary>
     partial class IslandForm
     {
         WeatherReport weather;
         DateTime nextWeatherUtc = DateTime.MinValue;
         bool weatherBusy;
-        string rainNotified = "", imsakNotified = "";
+        string rainNotified = "";
 
         bool WeatherEnabled { get { return settings.GetBool("weather", true); } }
-        int HijriAdjust { get { return settings.GetInt("hijri.adjust", 0); } }
-
-        bool RamadanToday(out int day) { return Hijri.IsRamadan(DateTime.Now, HijriAdjust, out day); }
-        bool RamadanToday() { int d; return RamadanToday(out d); }
-
         /// <summary>Hourly refresh (BMKG publishes 3-hour slots); retries sooner after a failure.</summary>
         void MaybeRefreshWeather()
         {
@@ -69,21 +64,6 @@ namespace Gili
             if (t != null) t.Data = rain;
         }
 
-        /// <summary>During Ramadan: a reminder at imsak (10 minutes before Subuh).</summary>
-        void CheckImsak(DateTime local)
-        {
-            if (prayers == null || !settings.GetBool("prayer.notify", true) || !RamadanToday()) return;
-            DateTime t = prayers.Times[PrayerCalc.Imsak];
-            if (local < t || local >= t.AddMinutes(2)) return;
-            string key = t.ToString("yyyyMMddHHmm");
-            if (key == imsakNotified) return;
-            imsakNotified = key;
-            var ts = ShowToast(View.Adzan, 30, 3, true);
-            if (ts != null) { ts.Title = "Imsak"; ts.Detail = Hm(t); }
-            Chime.Adzan();
-            Pulse(Theme.Prayer, 4);
-        }
-
         static string Temp(WeatherEntry e) { return Math.Round(e.TempC) + "°"; }
 
         static bool IsNight(DateTime local) { return local.Hour < 6 || local.Hour >= 18; }
@@ -101,19 +81,5 @@ namespace Gili
             paint.TextRight(weather != null ? weather.Place : "", Theme.Ui(12f), Theme.Sub, w - 16, cy);
         }
 
-        /// <summary>Top strip of the prayer page: Hijri date on the left, current weather on the right.</summary>
-        void DrawTodayStrip(float w)
-        {
-            int ramadanDay;
-            string hijri = DateText() + " · " + Hijri.Format(DateTime.Now, HijriAdjust);
-            if (RamadanToday(out ramadanDay)) hijri = "Día de Ramadán " + ramadanDay + " · " + hijri;
-            paint.Text(hijri, Theme.Ui(11.5f), Theme.Sub, 18, 54, w / 2, StringAlignment.Near);
-            var now = CurrentWeather();
-            if (now == null) return;
-            string text = Temp(now) + " " + now.Desc;
-            float tw = paint.Measure(text, Theme.Ui(11.5f));
-            paint.TextRight(text, Theme.Ui(11.5f), Theme.Sub, w - 18, 54);
-            WeatherArt.Draw(paint, now.Code, w - 18 - tw - 12, 54, 15, IsNight(DateTime.Now));
-        }
     }
 }

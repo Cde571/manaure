@@ -107,8 +107,6 @@ namespace Gili
             x = Toggle("tgViz", x, y, "Espectro", settings.GetBool("visualizer", true),
                        delegate { SetSetting("visualizer", !settings.GetBool("visualizer", true)); });
             x = Toggle("tgLyrics", x + 6, y, "Letras", LyricsEnabled, delegate { SetSetting("lyrics", !LyricsEnabled); });
-            x = Toggle("tgAdzan", x + 6, y, "Oración", settings.GetBool("prayer.notify", true),
-                       delegate { SetSetting("prayer.notify", !settings.GetBool("prayer.notify", true)); });
             Toggle("tgHint", x + 6, y, "Indicador", settings.GetBool("hintLine", true),
                    delegate { SetSetting("hintLine", !settings.GetBool("hintLine", true)); });
             y += 34;

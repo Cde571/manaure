@@ -117,7 +117,7 @@ namespace Gili
                     if (demoStartedTimer) pomo.Start(DateTime.UtcNow);
                     Kick();
                 })),
-                Step(2600, Cue("Jadwal sholat Kemenag RI", "plus cuaca BMKG & tanggal Hijriah", delegate { Expand(2); })),
+                Step(2600, Cue("Hora y ubicación", "Hora de Windows y gracias a Jesús a las 3:00 p. m.", delegate { Expand(2); })),
                 Step(1900, Cue("Jadwal rapat", "pengingat + tombol Gabung Meet / Zoom", delegate
                 {
                     var now = DateTime.Now;
@@ -172,7 +172,7 @@ namespace Gili
                 Step(700, delegate { SetMood(Mood.Sad, 0.7); }),
                 Step(700, delegate { SetMood(Mood.Surprised, 0.7); }),
                 Step(900, delegate { SetMood(Mood.Asleep, 0.9); }),
-                Step(900, Cue("Pilihan tema", "Hitam · Adaptif · Terang · Ramadan · Liquid Glass", delegate
+                Step(900, Cue("Temas", "Oscuro · Adaptativo · Claro · Dorado · Cristal líquido", delegate
                 {
                     demoEyes = false; tempMoodUntil = DateTime.MinValue;
                     SetSetting("theme", "adaptif"); Expand(0);
